@@ -68,9 +68,9 @@ class sfSessionStorage extends sfStorage
     // initialize parent
     parent::initialize($options);
 
-    if (!array_key_exists('timeout', $this->options))
+    if (!array_key_exists('gc_maxlifetime', $this->options))
     {
-      $this->options['timeout'] = 1800;
+      $this->options['gc_maxlifetime'] = 1800;
     }
 
     // set session name
@@ -96,9 +96,9 @@ class sfSessionStorage extends sfStorage
     }
 
     // force the max lifetime for session garbage collector to be greater than timeout
-    if (ini_get('session.gc_maxlifetime') < $this->options['timeout'])
+    if (ini_get('session.gc_maxlifetime') < $this->options['gc_maxlifetime'])
     {
-      ini_set('session.gc_maxlifetime', $this->options['timeout']);
+      ini_set('session.gc_maxlifetime', $this->options['gc_maxlifetime']);
     }
 
     if ($this->options['auto_start'] && !self::$sessionStarted)

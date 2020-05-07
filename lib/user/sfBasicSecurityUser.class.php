@@ -248,8 +248,7 @@ class sfBasicSecurityUser extends sfUser implements sfSecurityUser
 
     if (!array_key_exists('timeout', $this->options))
     {
-      $storageOptions = $storage->getOptions();
-      $this->options['timeout'] = isset($storageOptions['timeout']) ? $storageOptions['timeout'] : 1800;
+      $this->options['timeout'] = 1800;
     }
 
     // read data from storage
